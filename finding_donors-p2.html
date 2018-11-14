@@ -12745,7 +12745,7 @@ AdaBoostClassifier trained on 28941 samples.
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p><strong>回答： </strong> AdaBoost 是一种迭代算法，其核心思想是针对同一个训练集训练不同的分类器(弱分类器)，然后把这些弱分类器集合起来，构成一个更强的最终分类器(强分类器)。开始时，所有权重设置是相等的，但是在每一轮中，错误的分类的例子的权重增加，迫使弱分类器集中在训练高权重的数据，最后将每次训练得到的分类器最后融合起来，作为最后的决策分类器。</p>
+<p><strong>回答： </strong> AdaBoost 是一种迭代算法，其核心思想是针对同一个训练集训练不同的分类器(弱分类器)，然后把这些弱分类器集合起来，构成一个更强的最终分类器(强分类器)。开始时，所有权重设置是相等的，但是在每一轮中，错误的分类的例子的权重增加，迫使弱分类器集中在训练高权重的数据，最后将每次训练得到的分类器通过权重融合起来，得到最后的决策分类器。</p>
 
 </div>
 </div>
@@ -12777,17 +12777,17 @@ AdaBoostClassifier trained on 28941 samples.
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[13]:</div>
+<div class="prompt input_prompt">In&nbsp;[19]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># TODO：导入&#39;GridSearchCV&#39;, &#39;make_scorer&#39;和其他一些需要的库</span>
 <span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="k">import</span> <span class="n">GridSearchCV</span>
 <span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="k">import</span> <span class="n">make_scorer</span>
 <span class="c1"># TODO：初始化分类器</span>
-<span class="n">clf</span> <span class="o">=</span> <span class="n">AdaBoostClassifier</span><span class="p">(</span><span class="n">random_state</span> <span class="o">=</span> <span class="mi">0</span><span class="p">)</span>
+<span class="n">clf</span> <span class="o">=</span> <span class="n">AdaBoostClassifier</span><span class="p">(</span><span class="n">learning_rate</span> <span class="o">=</span> <span class="mf">1.5</span><span class="p">,</span> <span class="n">random_state</span> <span class="o">=</span> <span class="mi">0</span><span class="p">)</span>
 
 <span class="c1"># TODO：创建你希望调节的参数列表</span>
-<span class="n">parameters</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;n_estimators&#39;</span><span class="p">:[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">25</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">75</span><span class="p">,</span> <span class="mi">100</span><span class="p">]}</span>
+<span class="n">parameters</span> <span class="o">=</span> <span class="p">{</span> <span class="s1">&#39;n_estimators&#39;</span><span class="p">:[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">300</span> <span class="p">,</span> <span class="mi">500</span><span class="p">,</span> <span class="mi">1000</span><span class="p">,</span> <span class="mi">2000</span><span class="p">,</span> <span class="mi">3000</span><span class="p">,</span> <span class="mi">5000</span><span class="p">]}</span>
 
 <span class="c1"># TODO：创建一个fbeta_score打分对象</span>
 
@@ -12835,17 +12835,17 @@ AdaBoostClassifier trained on 28941 samples.
 <pre>best_clf
 ------
 AdaBoostClassifier(algorithm=&#39;SAMME.R&#39;, base_estimator=None,
-          learning_rate=1.0, n_estimators=100, random_state=0)
+          learning_rate=1.5, n_estimators=5000, random_state=0)
 
 Unoptimized model
 ------
 Accuracy score on validation data: 0.8648
-F-score on validation data: 0.7443
+F-score on validation data: 0.7422
 
 Optimized Model
 ------
-Final accuracy score on the validation data: 0.8684
-Final F-score on the validation data: 0.7517
+Final accuracy score on the validation data: 0.8735
+Final F-score on the validation data: 0.7591
 </pre>
 </div>
 </div>
